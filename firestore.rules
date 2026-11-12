@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isMember(spaceId) {
+      return signedIn()
+        && request.auth.uid in get(/databases/$(database)/documents/spaces/$(spaceId)).data.members;
+    }
+
+    match /users/{userId} {
+      allow read, write: if signedIn() && request.auth.uid == userId;
+    }
+
+    match /spaces/{spaceId} {
+      allow create: if signedIn()
+        && request.resource.data.owner == request.auth.uid
+        && request.resource.data.members == [request.auth.uid];
+
+      // Um usuário autenticado pode localizar um espaço ainda com uma vaga
+      // se tiver o código-convite. Espaços completos ficam visíveis só aos membros.
+      allow read: if signedIn()
+        && (request.auth.uid in resource.data.members || resource.data.members.size() == 1);
+
+      // Permite somente que uma segunda conta entre em um espaço com uma vaga.
+      allow update: if signedIn()
+        && !(request.auth.uid in resource.data.members)
+        && resource.data.members.size() == 1
+        && request.resource.data.members == resource.data.members.concat([request.auth.uid])
+        && request.resource.data.owner == resource.data.owner;
+
+      allow delete: if false;
+
+      match /letters/{letterId} {
+        allow read: if isMember(spaceId);
+        allow create: if isMember(spaceId)
+          && request.resource.data.senderUid == request.auth.uid
+          && request.resource.data.title is string
+          && request.resource.data.body is string
+          && request.resource.data.title.size() <= 90
+          && request.resource.data.body.size() <= 6000;
+        allow update, delete: if false;
+      }
+    }
+  }
+}

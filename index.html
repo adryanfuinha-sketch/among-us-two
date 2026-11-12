@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#573b39">
+  <title>Among Us Two</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="eyebrow">EST. FOR TWO · 2026</div>
+      <div class="ornament">✿</div>
+      <h1>Among Us Two</h1>
+      <p class="subtitle">Our little universe, just for two.</p>
+      <p class="couple">♡ Irvina &amp; Raivinha ♡</p>
+    </header>
+
+    <section id="auth-panel" class="paper panel">
+      <p class="eyebrow ink">SEU CANTINHO PARTICULAR</p>
+      <h2>Entrar no nosso espaço</h2>
+      <p class="muted">Cada pessoa usa sua própria conta. Não compartilhe sua senha.</p>
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="email" placeholder="seu@email.com">
+      <label for="password">Senha</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="Sua senha">
+      <div class="button-row">
+        <button id="signup-btn" class="secondary">Criar conta</button>
+        <button id="login-btn">Entrar</button>
+      </div>
+      <p id="auth-message" class="message" role="status"></p>
+    </section>
+
+    <section id="app-panel" hidden>
+      <nav class="tabs">
+        <button class="tab active" data-tab="letters">Cartas</button>
+        <button class="tab" data-tab="space">Nosso espaço</button>
+      </nav>
+
+      <section id="letters-view" class="paper panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow ink">PALAVRAS PARA GUARDAR</p>
+            <h2>Nossas cartas</h2>
+          </div>
+          <span class="stamp">♡</span>
+        </div>
+        <form id="letter-form">
+          <label for="letter-title">Título</label>
+          <input id="letter-title" maxlength="90" required placeholder="Uma carta para você...">
+          <label for="letter-body">Mensagem</label>
+          <textarea id="letter-body" rows="7" maxlength="6000" required placeholder="Escreva com carinho..."></textarea>
+          <button type="submit">Guardar carta ♡</button>
+        </form>
+        <p id="letter-message" class="message" role="status"></p>
+        <div id="letters-list" class="letters-list">
+          <p class="muted">As cartas de vocês aparecerão aqui.</p>
+        </div>
+      </section>
+
+      <section id="space-view" class="paper panel" hidden>
+        <p class="eyebrow ink">UM ESPAÇO COMPARTILHADO</p>
+        <h2>Nosso espaço</h2>
+        <p class="muted">Uma pessoa cria o espaço e compartilha o código com a outra. O código funciona como um convite: envie apenas para quem deve participar.</p>
+        <div id="no-space">
+          <button id="create-space-btn">Criar nosso espaço</button>
+          <div class="divider"><span>ou entrar em um espaço</span></div>
+          <label for="space-code">Código do espaço</label>
+          <input id="space-code" autocomplete="off" placeholder="Cole o código recebido">
+          <button id="join-space-btn" class="secondary">Entrar no espaço</button>
+        </div>
+        <div id="has-space" hidden>
+          <p class="muted">Código para convidar a outra pessoa:</p>
+          <div class="code-box"><code id="current-space-code"></code><button id="copy-code-btn" class="small">Copiar</button></div>
+          <p id="member-status" class="message"></p>
+        </div>
+        <button id="logout-btn" class="text-button">Sair da conta</button>
+        <p id="space-message" class="message" role="status"></p>
+      </section>
+    </section>
+
+    <footer>Feito para guardar lembranças. ♡</footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
