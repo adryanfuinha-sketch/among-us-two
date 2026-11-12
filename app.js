@@ -18,7 +18,6 @@ const firebaseConfig = {
   messagingSenderId: "772719111558",
   appId: "1:772719111558:web:0a633439ccef81b7bdd007"
 };
-};
 
 const configured = !Object.values(firebaseConfig).some(v => String(v).startsWith("COLE_") || String(v).startsWith("SEU_"));
 const $ = id => document.getElementById(id);
