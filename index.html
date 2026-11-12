@@ -3,85 +3,206 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#573b39">
-  <title>Among Us Two</title>
+  <meta name="theme-color" content="#f4eadb">
+  <title>Among Us Two — nosso pequeno universo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="shell">
-    <header class="hero">
-      <div class="eyebrow">EST. FOR TWO · 2026</div>
-      <div class="ornament">✿</div>
-      <h1>Among Us Two</h1>
-      <p class="subtitle">Our little universe, just for two.</p>
-      <p class="couple">♡ Irvina &amp; Raivinha ♡</p>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-wrap">
+      <div class="brand-mark">✿</div>
+      <p class="overline">EST. FOR TWO · 2026</p>
+      <h1 class="brand-title">Among Us <em>Two</em></h1>
+      <p class="brand-subtitle">Our little universe, just for two.</p>
+      <div class="couple-line">♡ Irvina &amp; Raivinha ♡</div>
+
+      <section class="auth-card">
+        <div class="tiny-flower">❀</div>
+        <p class="overline ink">UM CANTINHO SÓ DE VOCÊS</p>
+        <h2 id="auth-heading">Entre no nosso universo</h2>
+        <p class="soft-copy">Cartas, lembranças e pequenos planos guardados com carinho.</p>
+        <label for="email">Seu e-mail</label>
+        <input id="email" type="email" autocomplete="email" placeholder="seu@email.com">
+        <label for="password">Sua senha</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="Pelo menos 6 caracteres">
+        <div class="auth-actions">
+          <button id="login-btn" class="btn btn-primary">Entrar <span>↗</span></button>
+          <button id="signup-btn" class="btn btn-quiet">Criar minha conta</button>
+        </div>
+        <p id="auth-message" class="status-message" role="status"></p>
+      </section>
+      <p class="auth-footnote">Um lugar pequeno. Um amor enorme. ♡</p>
+    </div>
+  </div>
+
+  <div id="app-screen" class="app-screen" hidden>
+    <header class="topbar">
+      <a class="mini-brand" href="#" aria-label="Início">
+        <span class="mini-flower">✿</span>
+        <span>Among Us <em>Two</em></span>
+      </a>
+      <div class="topbar-right">
+        <span class="private-label"><span class="tiny-lock">⌑</span> só nós dois</span>
+        <button id="logout-btn" class="logout-btn" title="Sair da conta">Sair</button>
+      </div>
     </header>
 
-    <section id="auth-panel" class="paper panel">
-      <p class="eyebrow ink">SEU CANTINHO PARTICULAR</p>
-      <h2>Entrar no nosso espaço</h2>
-      <p class="muted">Cada pessoa usa sua própria conta. Não compartilhe sua senha.</p>
-      <label for="email">E-mail</label>
-      <input id="email" type="email" autocomplete="email" placeholder="seu@email.com">
-      <label for="password">Senha</label>
-      <input id="password" type="password" autocomplete="current-password" placeholder="Sua senha">
-      <div class="button-row">
-        <button id="signup-btn" class="secondary">Criar conta</button>
-        <button id="login-btn">Entrar</button>
-      </div>
-      <p id="auth-message" class="message" role="status"></p>
-    </section>
+    <main class="main-shell">
+      <section class="welcome-banner">
+        <div class="welcome-copy">
+          <p class="overline light">NOSSO PEQUENO UNIVERSO</p>
+          <h1>Que bom ter você <em>de volta.</em></h1>
+          <p>Um lugar para guardar o que o coração não quer esquecer.</p>
+          <button class="btn btn-paper" data-go="letters">Abrir nossas cartas <span>♡</span></button>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="sun-disc"></div>
+          <div class="flower-stem">✿</div>
+          <div class="envelope-illustration">
+            <div class="env-back"></div><div class="env-paper"></div><div class="env-front"></div><div class="env-seal">♡</div>
+          </div>
+          <span class="sparkle sparkle-one">✧</span><span class="sparkle sparkle-two">✦</span>
+        </div>
+        <span class="banner-caption">EST. FOR TWO · 2026</span>
+      </section>
 
-    <section id="app-panel" hidden>
-      <nav class="tabs">
-        <button class="tab active" data-tab="letters">Cartas</button>
-        <button class="tab" data-tab="space">Nosso espaço</button>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-page="home"><span class="nav-icon">⌂</span>Início</button>
+        <button class="nav-item" data-page="letters"><span class="nav-icon">✉</span>Cartas <span id="unread-dot" class="unread-dot" hidden></span></button>
+        <button class="nav-item" data-page="story"><span class="nav-icon">❀</span>História</button>
+        <button class="nav-item" data-page="space"><span class="nav-icon">♡</span>Nosso espaço</button>
       </nav>
 
-      <section id="letters-view" class="paper panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow ink">PALAVRAS PARA GUARDAR</p>
-            <h2>Nossas cartas</h2>
+      <section id="page-home" class="page active-page">
+        <div class="home-grid">
+          <article class="welcome-note paper-card">
+            <p class="overline ink">UM LEMBRETE DE HOJE</p>
+            <h2>O melhor lugar é onde a gente se encontra.</h2>
+            <p>Que este cantinho continue cheio de palavras sinceras, memórias bonitas e planos que façam o coração sorrir.</p>
+            <div class="note-signature">com carinho, sempre ♡</div>
+          </article>
+          <article class="quick-card paper-card">
+            <div class="quick-icon">✉</div>
+            <p class="overline ink">CAIXINHA DE CARTAS</p>
+            <h3>Tem palavras esperando por vocês.</h3>
+            <button class="text-link" data-go="letters">Ver nossas cartas <span>→</span></button>
+          </article>
+          <article class="quick-card future-card">
+            <div class="quick-icon">✧</div>
+            <p class="overline ink">UM DIA DE CADA VEZ</p>
+            <h3>O futuro também começa nas pequenas coisas.</h3>
+            <button class="text-link" data-go="story">Relembrar nossa história <span>→</span></button>
+          </article>
+        </div>
+        <div class="bottom-quote">
+          <span>❧</span>
+          <p>“Há coisas que merecem ser escritas para nunca se perderem.”</p>
+          <span>❧</span>
+        </div>
+      </section>
+
+      <section id="page-letters" class="page" hidden>
+        <div class="page-heading">
+          <div><p class="overline ink">PALAVRAS PARA GUARDAR</p><h2>Nossas <em>cartas</em></h2><p class="soft-copy">Cada carta é um pedacinho de alguém chegando até o outro.</p></div>
+          <div class="round-stamp">♡</div>
+        </div>
+        <div class="letters-layout">
+          <section class="write-card paper-card">
+            <div class="card-kicker">✧ ESCREVA COM O CORAÇÃO</div>
+            <h3>Uma carta para você</h3>
+            <form id="letter-form">
+              <label for="letter-title">Dê um título à sua carta</label>
+              <input id="letter-title" maxlength="90" required placeholder="Ex.: Um pedacinho do meu dia">
+              <label for="letter-body">O que você quer dizer?</label>
+              <textarea id="letter-body" rows="7" maxlength="6000" required placeholder="Escreva sem pressa..."></textarea>
+              <button type="submit" class="btn btn-primary send-btn">Enviar cartinha <span>♡</span></button>
+            </form>
+            <p id="letter-message" class="status-message" role="status"></p>
+          </section>
+          <section class="received-area">
+            <div class="received-heading"><div><p class="overline ink">GUARDADAS COM CARINHO</p><h3>Cartas recebidas</h3></div><span class="received-count" id="letter-count">0</span></div>
+            <div id="letters-list" class="letters-list"><div class="empty-state"><div>✉</div><p>As cartinhas de vocês vão aparecer aqui.</p><span>A primeira pode ser escrita agora. ♡</span></div></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="page-story" class="page" hidden>
+        <div class="page-heading">
+          <div><p class="overline ink">CADA CAPÍTULO, UMA LEMBRANÇA</p><h2>Nossa <em>história</em></h2><p class="soft-copy">Ainda há tantas páginas bonitas para preencher.</p></div>
+          <div class="round-stamp">❀</div>
+        </div>
+        <div class="story-paper paper-card">
+          <div class="story-topline">IRVINA &amp; RAIVINHA <span>♡</span> DESDE 2026</div>
+          <h3>Five months of love</h3>
+          <p class="story-intro">Uma história feita de conversas, cuidado, fé, risadas e escolhas diárias.</p>
+          <div class="timeline">
+            <div class="timeline-entry"><span class="timeline-dot">♡</span><div><small>O COMEÇO</small><h4>Quando tudo começou</h4><p>O primeiro capítulo de uma história que vocês ainda estão escrevendo juntos.</p></div></div>
+            <div class="timeline-entry"><span class="timeline-dot">✧</span><div><small>OS DIAS DE HOJE</small><h4>Pequenas coisas, grandes significados</h4><p>As conversas, as orações, as cartas e os detalhes que fazem a relação ser de vocês.</p></div></div>
+            <div class="timeline-entry"><span class="timeline-dot">❀</span><div><small>O QUE VEM PELA FRENTE</small><h4>Our future</h4><p>Novos lugares, novos sonhos e muitos momentos para guardar — um passo de cada vez.</p></div></div>
           </div>
-          <span class="stamp">♡</span>
+          <div class="story-footer">continua... <span>♡</span></div>
         </div>
-        <form id="letter-form">
-          <label for="letter-title">Título</label>
-          <input id="letter-title" maxlength="90" required placeholder="Uma carta para você...">
-          <label for="letter-body">Mensagem</label>
-          <textarea id="letter-body" rows="7" maxlength="6000" required placeholder="Escreva com carinho..."></textarea>
-          <button type="submit">Guardar carta ♡</button>
-        </form>
-        <p id="letter-message" class="message" role="status"></p>
-        <div id="letters-list" class="letters-list">
-          <p class="muted">As cartas de vocês aparecerão aqui.</p>
+        <div class="memory-strip">
+          <div><span>✿</span><strong>Minha Irvina</strong><small>Um espaço para celebrar quem ela é.</small></div>
+          <div><span>⌂</span><strong>Nosso futuro</strong><small>Os sonhos que ainda vamos construir.</small></div>
+          <div><span>▧</span><strong>Álbum de memórias</strong><small>Um cantinho reservado para fotos especiais.</small></div>
         </div>
       </section>
 
-      <section id="space-view" class="paper panel" hidden>
-        <p class="eyebrow ink">UM ESPAÇO COMPARTILHADO</p>
-        <h2>Nosso espaço</h2>
-        <p class="muted">Uma pessoa cria o espaço e compartilha o código com a outra. O código funciona como um convite: envie apenas para quem deve participar.</p>
-        <div id="no-space">
-          <button id="create-space-btn">Criar nosso espaço</button>
-          <div class="divider"><span>ou entrar em um espaço</span></div>
-          <label for="space-code">Código do espaço</label>
-          <input id="space-code" autocomplete="off" placeholder="Cole o código recebido">
-          <button id="join-space-btn" class="secondary">Entrar no espaço</button>
+      <section id="page-space" class="page" hidden>
+        <div class="page-heading">
+          <div><p class="overline ink">UM ESPAÇO COMPARTILHADO</p><h2>Nosso <em>cantinho</em></h2><p class="soft-copy">Só duas pessoas, um código de convite e muitas lembranças.</p></div>
+          <div class="round-stamp">⌂</div>
         </div>
-        <div id="has-space" hidden>
-          <p class="muted">Código para convidar a outra pessoa:</p>
-          <div class="code-box"><code id="current-space-code"></code><button id="copy-code-btn" class="small">Copiar</button></div>
-          <p id="member-status" class="message"></p>
+        <div class="space-card paper-card">
+          <div class="space-emblem">♡</div>
+          <div id="no-space">
+            <h3>Vamos criar nosso espaço?</h3>
+            <p>Uma pessoa cria o cantinho e compartilha o código com a outra.</p>
+            <button id="create-space-btn" class="btn btn-primary">Criar nosso espaço <span>✧</span></button>
+            <div class="or-divider"><span>ou entrar com um convite</span></div>
+            <label for="space-code">Código recebido</label>
+            <input id="space-code" autocomplete="off" placeholder="Cole o código aqui">
+            <button id="join-space-btn" class="btn btn-quiet full-btn">Entrar no espaço</button>
+          </div>
+          <div id="has-space" hidden>
+            <h3>O cantinho de vocês está criado!</h3>
+            <p>Compartilhe este código com a outra pessoa para que ela possa entrar.</p>
+            <div class="invite-code"><code id="current-space-code"></code><button id="copy-code-btn" class="copy-btn">Copiar</button></div>
+            <p id="member-status" class="status-message"></p>
+          </div>
+          <p id="space-message" class="status-message" role="status"></p>
         </div>
-        <button id="logout-btn" class="text-button">Sair da conta</button>
-        <p id="space-message" class="message" role="status"></p>
       </section>
-    </section>
 
-    <footer>Feito para guardar lembranças. ♡</footer>
-  </main>
+      <footer class="site-footer"><span>✿</span> Feito para guardar o que importa. <span>♡</span></footer>
+    </main>
+  </div>
+
+  <div id="incoming-toast" class="incoming-toast" role="status" aria-live="polite" hidden>
+    <div class="toast-envelope"><span>♡</span></div>
+    <div class="toast-copy"><small>UMA NOVA CARTA CHEGOU</small><strong id="incoming-title">Uma cartinha para você</strong><span id="incoming-from">Alguém especial escreveu para você.</span></div>
+    <button id="open-incoming" class="toast-open" aria-label="Abrir carta">↗</button>
+    <button id="dismiss-incoming" class="toast-dismiss" aria-label="Fechar aviso">×</button>
+  </div>
+
+  <div id="letter-modal" class="modal-backdrop" hidden>
+    <article class="opened-letter">
+      <button id="close-letter" class="modal-close" aria-label="Fechar">×</button>
+      <div class="letter-top-flower">❀</div>
+      <p class="overline ink">UMA CARTA PARA GUARDAR</p>
+      <h2 id="modal-title">Uma carta</h2>
+      <p id="modal-meta" class="letter-modal-meta"></p>
+      <div class="modal-rule"></div>
+      <p id="modal-body" class="modal-letter-body"></p>
+      <div class="modal-signature">com carinho, ♡</div>
+    </article>
+  </div>
+
   <script type="module" src="app.js"></script>
 </body>
 </html>
